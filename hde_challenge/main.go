@@ -1,38 +1,59 @@
 package main
 
-//  2
-//  4
-//  3 -1 1 14
-//  5
-//  9 6 -53 32 16
-
 import (
 	"bufio"
-	"fmt"
 	"os"
 	"strconv"
+	"strings"
 )
 
-func askForInteger() int64 {
+func askForInteger() int {
 	reader := bufio.NewReader(os.Stdin)
 	text, _ := reader.ReadString('\n')
 	text = text[:len(text)-1]
 	value, _ := strconv.ParseInt(text, 10, 64)
-	return value
+	return int(value)
 }
 
-func getCases(N int64) int64 {
+func askForArray() []string {
+	reader := bufio.NewReader(os.Stdin)
+	text, _ := reader.ReadString('\n')
+	text = text[:len(text)-1]
+	return strings.Split(text, " ")
+}
 
-	if N > 1 {
-		M := getCases(N - 1)
-		println("Case ", M)
+func getSquaresSum(array []string, arrayLen int) int {
+	sum := 0
+
+	for index := 0; index < int(arrayLen); index++ {
+		text := array[index]
+		val, _ := strconv.ParseInt(text, 10, 64)
+		if val > 0 {
+			sum += int(val * val)
+		}
 	}
-	return askForInteger()
+
+	return sum
+}
+
+func getCases(N int, sums []int) {
+	if N == 0 {
+		return
+	}
+	arrayLen := askForInteger()
+	array := askForArray()
+	sum := getSquaresSum(array[:], arrayLen)
+	sums[len(sums)-N] = sum
+	getCases(N-1, sums)
+
 }
 
 func main() {
 	N := askForInteger()
-	fmt.Println(N)
+	sums := make([]int, N)
+	getCases(N, sums)
 
-	getCases(N)
+	for i := 0; i < N; i++ {
+		println(sums[i])
+	}
 }

@@ -1,6 +1,6 @@
 package main
 
 func main() {
-	contents := readTextFile("./files/series.txt")
-	largestProduct(contents, 13)
+	product := specialPythagoreanTriple(1000)
+	println(product)
 }

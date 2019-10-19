@@ -1,6 +1,11 @@
 package main
 
-import "strconv"
+import (
+	"bufio"
+	"log"
+	"os"
+	"strconv"
+)
 
 func getProduct(str string) uint64 {
 	prod := uint64(1)
@@ -15,6 +20,22 @@ func getProduct(str string) uint64 {
 		}
 	}
 	return prod
+}
+
+func readTextFile(fileName string) string {
+	file, err := os.Open(fileName)
+	if err != nil {
+		log.Fatal(err)
+	}
+	defer file.Close()
+
+	scanner := bufio.NewScanner(file)
+	contents := ""
+
+	for scanner.Scan() {
+		contents += scanner.Text()
+	}
+	return contents
 }
 
 func largestProduct(str string, num int) {

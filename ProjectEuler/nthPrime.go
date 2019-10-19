@@ -1,8 +1,14 @@
 package main
 
-func isPrime(n int) bool {
+import "math"
 
-	for i := 2; i < n/2; i++ {
+func isPrime(n int) bool {
+	if n%2 == 0 {
+		return false
+	}
+
+	limit := int(math.Sqrt(float64(n))) + 1
+	for i := 3; i < limit; i += 2 {
 		if n%i == 0 {
 			return false
 		}

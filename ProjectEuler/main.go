@@ -1,6 +1,6 @@
 package main
 
 func main() {
-	product := specialPythagoreanTriple(1000)
-	println(product)
+	sum := summationOfPrimes(2000000)
+	println(sum)
 }

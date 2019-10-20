@@ -1,21 +1,11 @@
 package main
 
-import "fmt"
+import (
+	"fmt"
+	"math/big"
+)
 
 func main() {
-
-	maxCollatzLen := 0
-	maxCollatzNum := 0
-
-	for i := 13; i < 1e6; i++ {
-		collatz := collatzSequence(i)
-		lcLen := len(collatz)
-
-		if lcLen > maxCollatzLen {
-			maxCollatzLen = lcLen
-			maxCollatzNum = i
-		}
-	}
-
-	fmt.Println(maxCollatzNum, maxCollatzLen)
+	var coef big.Int
+	fmt.Println(coef.Binomial(40, 20))
 }

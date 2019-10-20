@@ -1,14 +1,21 @@
 package main
 
-func main() {
-	str := readTextFile("./files/prob13.txt")
-	numLen := 50
-	numbers := make([]string, 0)
+import "fmt"
 
-	for i := 0; i < len(str); i += numLen {
-		numbers = append(numbers, str[i:i+numLen])
+func main() {
+
+	maxCollatzLen := 0
+	maxCollatzNum := 0
+
+	for i := 13; i < 1e6; i++ {
+		collatz := collatzSequence(i)
+		lcLen := len(collatz)
+
+		if lcLen > maxCollatzLen {
+			maxCollatzLen = lcLen
+			maxCollatzNum = i
+		}
 	}
 
-	sum := getLargeSum(numbers)
-	println(sum)
+	fmt.Println(maxCollatzNum, maxCollatzLen)
 }

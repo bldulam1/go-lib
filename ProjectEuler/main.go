@@ -1,16 +1,14 @@
 package main
 
-import "fmt"
-
 func main() {
-	divisorsLen := 0
-	index := 12370
-	maxDivisorsLen := 500
-	for divisorsLen <= maxDivisorsLen {
-		an := arithmeticSum(index, 1, 1)
-		divisors := getDivisors(an)
-		divisorsLen = len(divisors)
-		fmt.Println(index, an, divisorsLen)
-		index++
+	str := readTextFile("./files/prob13.txt")
+	numLen := 50
+	numbers := make([]string, 0)
+
+	for i := 0; i < len(str); i += numLen {
+		numbers = append(numbers, str[i:i+numLen])
 	}
+
+	sum := getLargeSum(numbers)
+	println(sum)
 }
